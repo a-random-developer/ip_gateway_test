@@ -28,7 +28,7 @@
   const NON_US_REDIRECT_URL = "https://www.youtube.com/watch?v=Oa_bJMiesug";      
   const REDIRECT_DELAY_MS   = 5000;                             
 
-  fetch("https://ip-api.com/json")
+  fetch("http://ip-api.com/json")
     .then(r => r.json())
     .then(data => {
       console.log("Data : ",data);
