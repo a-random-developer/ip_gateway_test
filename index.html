@@ -26,7 +26,7 @@ document.onkeydown = function(e) {
   };
 
 const US_REDIRECT_URL     = "https://a-random-developer.github.io/stellantis_sandbox/";   
-const NON_US_REDIRECT_URL = "https://www.youtube.com/watch?v=KnxBnr0xXsc&t=20s";      
+const NON_US_REDIRECT_URL = "https://www.youtube.com/watch?v=Oa_bJMiesug";      
 const REDIRECT_DELAY_MS   = 5000;                             
 
 fetch("https://ipapi.co/json")
@@ -36,7 +36,7 @@ fetch("https://ipapi.co/json")
       if (data?.country === "US") {
         
         
-        window.location.replace(US_REDIRECT_URL);
+        window.location.replace(`${US_REDIRECT_URL}?&session=${Date.now()}`);
         return;
       }
 
