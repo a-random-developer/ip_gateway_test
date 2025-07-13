@@ -34,6 +34,8 @@ fetch("https://ipapi.co/json")
     .then(data => {
       console.log(data);
       if (data?.country === "US") {
+        
+        
         window.location.replace(US_REDIRECT_URL);
         return;
       }
